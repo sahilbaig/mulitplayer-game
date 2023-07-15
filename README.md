@@ -1,4 +1,4 @@
-# guess-the-show
+# Mulitplayer Game
 On my way to create a choatic multiplayer game... aim is last one standing 
 Progress: 
 1. One moving box in a boundary 
