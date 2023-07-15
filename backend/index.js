@@ -13,13 +13,7 @@ const io = new Server(httpServer, {
   },
 });
 
-function areClientsInSameRoom(client1Id) {
-  console.log(`Sockets in room : ${io.sockets.adapter}`)
-  
-  // return roomsOfClient1.some(room => roomsOfClient2.includes(room));
-}
 
-const clients =[]
 io.on('connection', socket => {
   socket.on("join-room", (room)=>{
     
@@ -27,7 +21,6 @@ io.on('connection', socket => {
       socket.join(room.room)
     }
 
-    console.log(io.sockets.adapter.rooms.get('RoomName'));
   })
 });
 
