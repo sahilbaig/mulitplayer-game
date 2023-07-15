@@ -1,8 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { io } from "socket.io-client";
-import Timer from "./timer";
 import { useEffect } from "react";
+import MovingDiv from "./moving-div";
 
 function App() {
   useEffect(() => {
@@ -12,30 +11,13 @@ function App() {
     };
   }, []);
 
+  useEffect(()=>{
+    
+  },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <button
-          onClick={() => {
-            const socket = io("http://localhost:3000");
-            socket.emit("join-room" , {room: "RoomName"});
-          }}
-        >
-          Join room (user 2)
-        </button>
-
-        <button
-          onClick={() => {
-            const socket = io("http://localhost:3000");
-            socket.emit("join-room" , {room: "RoomName"});
-
-          }}
-        >
-         Join room (user1)
-        </button>
-        <Timer />
-      </header>
+      <MovingDiv></MovingDiv>
     </div>
   );
 }

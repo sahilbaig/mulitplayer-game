@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
+
+const validPosition =(maxLimit , currentPos , movementAmount) =>{
+    if ((currentPos - movementAmount ) < maxLimit  ){
+        return currentPos
+    } 
+    return (currentPos - movementAmount ) 
+}
 const MovingDiv = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -8,26 +15,39 @@ const MovingDiv = () => {
       const { key } = event;
       const movementAmount = 10; // Adjust this value to change the movement speed
 
-      if (key === 'ArrowUp') {
-        setPosition((prevPosition) => ({
-          ...prevPosition,
-          y: prevPosition.y - movementAmount,
-        }));
+      if (key === 'ArrowUp' ) {
+        if (position.y-movementAmount>0){
+            setPosition((prevPosition) => ({
+                ...prevPosition,
+                y: prevPosition.y - movementAmount,
+              }));
+        }
+        
       } else if (key === 'ArrowDown') {
-        setPosition((prevPosition) => ({
-          ...prevPosition,
-          y: prevPosition.y + movementAmount,
-        }));
+
+        if(position.y + movementAmount + 50 < 500){
+            setPosition((prevPosition) => ({
+                ...prevPosition,
+                y: prevPosition.y + movementAmount,
+              }));
+        }
+        
       } else if (key === 'ArrowLeft') {
-        setPosition((prevPosition) => ({
-          ...prevPosition,
-          x: prevPosition.x - movementAmount,
-        }));
+        if (position.x - movementAmount  > 0){
+            setPosition((prevPosition) => ({
+                ...prevPosition,
+                x: prevPosition.x - movementAmount,
+              }));
+        }
+        
       } else if (key === 'ArrowRight') {
-        setPosition((prevPosition) => ({
-          ...prevPosition,
-          x: prevPosition.x + movementAmount,
-        }));
+        if(position.x + movementAmount < 1000){
+            setPosition((prevPosition) => ({
+                ...prevPosition,
+                x: prevPosition.x + movementAmount,
+              }));
+        }
+        
       }
     };
 
@@ -36,7 +56,7 @@ const MovingDiv = () => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [position]);
 
   return (
     <div
@@ -44,8 +64,8 @@ const MovingDiv = () => {
         position: 'absolute',
         top: position.y,
         left: position.x,
-        width: '100px',
-        height: '100px',
+        width: '50px',
+        height: '50px',
         backgroundColor: 'red',
       }}
     ></div>
