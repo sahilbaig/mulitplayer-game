@@ -1,12 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
-
-const validPosition =(maxLimit , currentPos , movementAmount) =>{
-    if ((currentPos - movementAmount ) < maxLimit  ){
-        return currentPos
-    } 
-    return (currentPos - movementAmount ) 
-}
 const MovingDiv = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
